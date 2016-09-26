@@ -156,8 +156,8 @@ ssl
 
 #configuration for postfix service
 
-    sed -i '75s/#myhostname.*/myhostname = mail.tyson.org/' /etc/postfix/main.cf
-    sed -i 's/#mydomain.*/mydomain = tyson.org/' /etc/postfix/main.cf
+    sed -i '75s/#myhostname.*/myhostname = '$nhost'/' /etc/postfix/main.cf
+    sed -i 's/#mydomain.*/mydomain = '$ndomain'/' /etc/postfix/main.cf
     sed -i '99s/#//' /etc/postfix/main.cf
     sed -i '116s/localhost/all/' /etc/postfix/main.cf
     sed -i 164d /etc/postfix/main.cf
@@ -187,7 +187,7 @@ smtpd_recipient_restrictions = permit_mynetworks,permit_auth_destination,permit_
 
 #   Configure SSL to use secure encrypt connection
     sed -i '59s/#//' /etc/httpd/conf.d/ssl.conf
-    sed -i '60s/#ServerName.*/ServerName www.tyson.org:443/' /etc/httpd/conf.d/ssl.conf
+    sed -i '60s/#ServerName.*/ServerName www.'$ndomain':443/' /etc/httpd/conf.d/ssl.conf
     sed -i '75s/SSLProtocol.*/SSLProtocol -All +TLSv1 +TLSv1.1 +TLSv1.2/' /etc/httpd/conf.d/ssl.conf
     sed -i '100s/SSLCertificateFile.*/SSLCertificateFile \/etc\/pki\/tls\/certs\/server.crt/' /etc/httpd/conf.d/ssl.conf
     sed -i '107s/SSLCertificateKeyFile.*/SSLCertificateKeyFile \/etc\/pki\/tls\/certs\/server.key/' /etc/httpd/conf.d/ssl.conf
