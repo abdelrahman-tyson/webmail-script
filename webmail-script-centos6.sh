@@ -261,19 +261,15 @@ r
 q
 y
 "
-#8
-#7
-#8
-#15
-#q
-#y
-#"
 {
 /usr/share/squirrelmail/config/conf.pl <<< "${all_inputs}"
 } > /dev/null 2>&1
     cp /usr/share/squirrelmail/plugins/secure_login/config.sample.php /usr/share/squirrelmail/plugins/secure_login/config.php
 
     sed -i '24s/1/0/' /usr/share/squirrelmail/plugins/secure_login/config.php 
+    sed -i '82a $plugins[3] = 'empty_trash';' /etc/squirrelmail/config.php
+    sed -i '83a $plugins[4] = 'secure_login';' /etc/squirrelmail/config.php
+    sed -i '84a $plugins[5] = 'compatibility';' /etc/squirrelmail/config.php
 
 #selinux
     setsebool -P httpd_can_network_connect on 
