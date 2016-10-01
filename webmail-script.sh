@@ -111,7 +111,7 @@ ssl
 #installing epel repo
 
 	echo "installing epel repo .............."
-	rm -f /etc/yum.repos.d/epel* > /dev/null 2>&1
+#	rm -f /etc/yum.repos.d/epel* > /dev/null 2>&1
 	yum clean all
 	yum -y install epel-release  
 
